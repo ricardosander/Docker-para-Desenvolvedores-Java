@@ -22,4 +22,4 @@ Docker é uma solução elegante para gerenciamento de containers baseado em uma
 Caso você esteja usando sistemas operacionais Windows ou Mac e queira utilizar Docker nesses sistemas operacinais, o primeiro passo é verificar e habilitar o suporte a virtualização. Isso é realizado na BIOS do seu sistema e o processo depende de cada computador.
 
 ### Instação
-Para instalar Docker basta seguir os passos descritos [aqui] {https://www.docker.com/get-started)
+Para instalar Docker basta seguir os passos descritos [aqui](https://www.docker.com/get-started)
