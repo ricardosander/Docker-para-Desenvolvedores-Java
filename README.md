@@ -64,3 +64,16 @@ docker container run -p 80:8080 my-image
 ```
 
 Neste exemplo, estamos criando e rodando um container com base na imagem "my-image" e estamos expondo a porta 8080 do container e deixando acessível pela porta 80 da nossa máquina local.
+
+### Listando e Parando Containers
+
+Para visualizarmos todos os containers que temos rodando, basta rodar o seguinte comando:
+```
+docker container ls
+```
+Ao listar o contrainer você perceberá que ele posui um id (CONTAINER_ID) e um nome (NAMES), que foram gerados quando ele foi criado.
+
+Se quisermos parar um container que está rodando, basta rodar o seguinte comando, referenciando o id ou nome do container:
+```
+docker container stop id-or-name
+```
