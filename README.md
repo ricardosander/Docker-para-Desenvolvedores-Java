@@ -23,3 +23,18 @@ Caso você esteja usando sistemas operacionais Windows ou Mac e queira utilizar 
 
 ### Instação
 Para instalar Docker basta seguir os passos descritos [aqui](https://www.docker.com/get-started)
+
+## Rodando Docker
+No Docker também temos nossa versão do "Hello World!", como nas linguagens de programação. Basta rodar o comando 
+```
+docker run hello-world
+```
+Caso seja a primeira vez que esteja rodando este comando, ele avisará que não existe uma imagem localmente e fará o download da imagem "hello-world". Após isso, um container será criado - a partir da imagem baixada - e executado, exibindo uma mensagem "Hello Docker!" com diversas informaçes introdutórios do Docker. Após isso, o container é finalizado.
+
+## Baixando Imagens
+Como dito anteriormente, uma imagem é a definição de um container. Para criar um container e pode executá-lo, precisamos de uma imagem para isso.
+
+Para baixar imagens basta rodar o seguinte comando:
+```
+docker image pull owner-username/image-name
+```
