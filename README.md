@@ -24,7 +24,7 @@ Caso você esteja usando sistemas operacionais Windows ou Mac e queira utilizar 
 ### Instação
 Para instalar Docker basta seguir os passos descritos [aqui](https://www.docker.com/get-started)
 
-## Rodando Docker
+## Hello Docker
 No Docker também temos nossa versão do "Hello World!", como nas linguagens de programação. Basta rodar o comando 
 ```
 docker run hello-world
@@ -38,3 +38,29 @@ Para baixar imagens basta rodar o seguinte comando:
 ```
 docker image pull owner-username/image-name
 ```
+
+## Rodando Containers
+
+Para rodar containers basta executar o seguinte comando:
+
+```
+docker container run image-name
+```
+Isso fará um container ser criado a partir da imagem informada e o container criado será executado.
+
+### Expondo portas
+
+Por padrão, as portas de um container não estão acessíveis fora do mesmo. É comum querermos expor portas para acesso externo, como seria o caso de uma aplicação web. Para expor as portas de um container, utilizamos a seguinte opção:
+
+```
+-p external-port:container-port
+```
+
+Onde "p" significa "publish" (publicar) e está expondo a porta do container e fazendo-a ser acessível por uma porta da máquina local onde o comando foi rodado.
+
+Exemplo:
+```
+docker container run -p 80:8080 my-image
+```
+
+Neste exemplo, estamos criando e rodando um container com base na imagem "my-image" e estamos expondo a porta 8080 do container e deixando acessível pela porta 80 da nossa máquina local.
