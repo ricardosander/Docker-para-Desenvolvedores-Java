@@ -85,3 +85,17 @@ O [Docker Hub](https://hub.docker.com/) é um respositório público de imagens 
 Quando baixamos uma imagem ou rodamos um container (o que irá baixar a imagem caso ela não exista localmente ainda) é do repositório Docker que o Docker irá buscar a imagem.
 
 Uma imagem Docker pode ser usada diretamente ou pode ser extendida e utilizada para criar outras imagens por terceiros. Uma imagem não pode ser alterada por terceiros.
+
+## Criando Imagens
+
+### Conceitos Básicos
+
+Utilizando o Docker Hub, podemos não somente baixar e usar as imagens para rodar containers mas podemos usar as imagens existentes para criar nossas próprias imagens, utilizando o já existente nelas e adicionando o que precisamos.
+
+Por exemplo, digamos que queiramos criar uma imagem para rodar uma aplicação Java em um sistema Ubuntu. Podemos começar utilizando a [imagem oficial do Ubuntu](https://hub.docker.com/_/ubuntu). Conseguimos extender essa imagem, adicionando um "layer" com o ambiente Java 11 - por exemplo, criando uma nova imagem. Essa nova imagem Ubuntu-Java11 que criaríamos poderia ser extendida, adicionando um novo layer, com a aplicação em si.
+
+Desse modo teríamos uma imagem Ubuntu-Java11 que poderia ser utilizada na criação de diversas outras imagens de aplicações Java.
+
+O Docker Hub possui diversas imagens públicas para uso mas é importante termos cuidado para utilizar imagens confiáveis que não contenham algum tipo de (Malware)[https://pt.wikipedia.org/wiki/Malware]. Uma imagem Docker do Docker Hub é composta de owner-name e image-name no seguinte formato: owner-name/image-name de forma que é simples identificar quem é o dono da imagem para identificar repositórios confiáveis. 
+
+Existem também o conceito de "imagens oficiais" as quais são facilmente identificadas por terem uma tag "official" e não terem owner-name, como o exemplo da [imagem oficial do Ubuntu](https://hub.docker.com/_/ubuntu). Essas imagens oficias são criadas e mantidas por profissionais da equipe do Docker para uso da comunidade e são confiáveis.
