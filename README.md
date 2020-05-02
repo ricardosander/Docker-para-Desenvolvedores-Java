@@ -1,4 +1,4 @@
-# docker-hands-on-for-java-developers-course
+# Curso de Docker para Desenvolvedores Java
 Repositório utilizado para aprendizado do curso Docker - Hands On for Java Developers
 
 ## Definições Iniciais
