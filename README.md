@@ -39,6 +39,12 @@ Para baixar imagens basta rodar o seguinte comando:
 docker image pull owner-username/image-name
 ```
 
+Para listar todas as imagens que temos baixadas locamente podemos usar o seguinte comando:
+```
+docker image ls
+```
+
+
 ## Rodando Containers
 
 Para rodar containers basta executar o seguinte comando:
