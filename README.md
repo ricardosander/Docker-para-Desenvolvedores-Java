@@ -95,9 +95,9 @@ Embora os comandos clássicos ainda funcionem normalmente, pode ser que eles ven
 Abaixo, seguem alguns exemplos de comandos clássicos (esquerda) versus comandos modernos (direita):
 
 ```
-docker pull owner-name/imagem-name | docker image pull owner-name/image-name
-docker ps | docker container ls
-docker images | docker image ls
+docker pull owner-name/imagem-name | docker image pull owner-name/image-name - baixando imagem
+docker ps | docker container ls - listando containers 
+docker images | docker image ls - listando imagens baixadas
 ```
 
 ## Docker Hub
