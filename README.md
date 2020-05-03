@@ -103,6 +103,20 @@ docker run -it ubuntu
 
 Dessa forma, ao rodar o container, seremos conectados ao bash do container e o container ficará rodando até sairmos do bash com o comando ```exit```.
 
+### Iniciando e Reiniciando Containers
+
+Já vimos como rodar um container e como pará-lo. Porém, ao parar um container ele não é destruído, ele apenas fica em um estado de desligado. Podemos rodar novamente o container com o seguinte comando:
+
+```
+docker container start id-or-name
+```
+
+Em alguns casos podemos querer reiniciar um container que está rodando, ou seja, pará-lo e inicialo novamente. Para isso, usamos o seguinte comando:
+
+```
+docker container restart id-or-name
+```
+
 ## Comandos Docker : Clássico vs Modernos
 
 Durante a evolução do Docker, decidiu-se migrar dos chamados "comandos clássicos" para os "comandos modernos". Isso foi uma reistruturação pois o Docker estava crescendo tanto que a quantidade de comandos estava começando a gerar confusão e desorganização.
