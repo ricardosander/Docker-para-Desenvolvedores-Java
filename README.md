@@ -117,6 +117,44 @@ Em alguns casos podemos querer reiniciar um container que está rodando, ou seja
 docker container restart id-or-name
 ```
 
+### Executando comandos e Logs
+
+Quando queremos executar comandos em um container que estamos rodando, podemos executar o seguintes comando:
+
+```
+docker container exec id-or-name command
+```
+
+Um uso bem interessante desse recurso é rodar o comando bash dentro do container, assim poderemos rodar diversos outros comandos Unix lá dentro. Mas para tanto, não podemos esquecer de ativar o modo interativo e conectar o container ao nosso terminal com os parâmetros ```-it```:
+
+```
+docker container exec -it id-or-name bash
+```
+
+Outro recurso muito útil e importante é ver os logs do container, Os logs do container na verdade é apenas o output que está sendo gerado pelo "sistema" como um todo e pode ser visualizado da seguinte forma:
+
+```
+docker container logs ir-or-name # pode-se adicionar o parâmetro -f (follow) para seguirmos o log continuamente enquanto ele é gerado.
+```
+
+### Removendo containers
+
+Um container que não está rodando ainda existe, no estado parado. Nesse estado ele ainda ocupa recursos, como memória e deveria ser removido caso não seja mais necessário. Uma forma de remover um container é com o seguinte comando:
+
+
+```
+docker container rm ir-or-name
+```
+
+Há também uma forma de remover todos os containers que estão parados, com o seguinte comando:
+
+```
+docker container prune
+```
+
+Esse comando exige uma confirmação e irá remover TODOS os containers parados do seu sistema.
+
+
 ## Comandos Docker : Clássico vs Modernos
 
 Durante a evolução do Docker, decidiu-se migrar dos chamados "comandos clássicos" para os "comandos modernos". Isso foi uma reistruturação pois o Docker estava crescendo tanto que a quantidade de comandos estava começando a gerar confusão e desorganização.
