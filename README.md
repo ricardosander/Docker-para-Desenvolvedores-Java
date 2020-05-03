@@ -101,7 +101,7 @@ ou
 docker run -it ubuntu
 ```
 
-Dessa forma, ao rodar o container, seremos conectados ao bash do container e o container ficará rodando até sairmos do bash com o comando ``exit```.
+Dessa forma, ao rodar o container, seremos conectados ao bash do container e o container ficará rodando até sairmos do bash com o comando ```exit```.
 
 ## Comandos Docker : Clássico vs Modernos
 
