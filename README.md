@@ -54,6 +54,12 @@ docker container run image-name
 ```
 Isso fará um container ser criado a partir da imagem informada e o container criado será executado.
 
+Quando um container é criado, ele também é executado. Muitas vezes, o comando que está sendo executado dentro do container fica preso ao nosso terminal. Existe um parâmetro para desanexar (detache) o comando do container do nosso terminal de forma que ele fique rodando "em background":
+
+```
+docker container run -d image-name
+```
+
 ### Expondo portas
 
 Por padrão, as portas de um container não estão acessíveis fora do mesmo. É comum querermos expor portas para acesso externo, como seria o caso de uma aplicação web. Para expor as portas de um container, utilizamos a seguinte opção:
