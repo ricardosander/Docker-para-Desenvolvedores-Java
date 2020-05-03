@@ -77,12 +77,31 @@ Para visualizarmos todos os containers que temos rodando, basta rodar o seguinte
 ```
 docker container ls
 ```
+ou
+```
+docker container ls -a # o parâmetro "a"significa all (todos), ou seja, listar todas os containers, até os que não estão rodando.
+```
 Ao listar o contrainer você perceberá que ele posui um id (CONTAINER_ID) e um nome (NAMES), que foram gerados quando ele foi criado.
 
 Se quisermos parar um container que está rodando, basta rodar o seguinte comando, referenciando o id ou nome do container:
 ```
 docker container stop id-or-name
 ```
+
+### Ciclo de Vida de um Container 
+
+Quando rodamos um container, ele executará um comando padrão. Algumas imagens, como a do Ubuntu, podem apenas rodar um comando e encerrar o container. No caso da imagem oficial do Ubuntu, teremos um comando /bin/bash. Como esse bash não está conectado a nenhum terminal e não tem nenhum script para rodar, ele acaba encerrando-se, o que finaliza o ciclo de vida do container.
+
+Uma opção que podemos utilizar nesse caso é ativar o modo interativo (-i) e conectar nosso terminal ao bash do container (-t):
+```
+docker run -i -t ubuntu
+```
+ou 
+```
+docker run -it ubuntu
+```
+
+Dessa forma, ao rodar o container, seremos conectados ao bash do container e o container ficará rodando até sairmos do bash com o comando ``exit```.
 
 ## Comandos Docker : Clássico vs Modernos
 
