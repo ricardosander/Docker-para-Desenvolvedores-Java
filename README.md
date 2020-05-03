@@ -44,6 +44,17 @@ Para listar todas as imagens que temos baixadas locamente podemos usar o seguint
 docker image ls
 ```
 
+### Imagens e Versões
+
+Na verdade, a referência completa para uma imagem é feita por três partes, não apenas duas. Uma referência completa seria:
+
+```
+owner-name/image-name:version
+```
+
+Ou seja, nome-proprietario/nome-imagem:versão. Quando não especificamos a versão, o Docker sempre irá considerar que estamos nos referindo a última versão (latest). Embora tenhamos usado esse recurso nos exemplos do curso, não recomenda-se que isso seja feito pois pode levar a problemas de compatibilidade e instabilidade sem ao menos estarmos ciente das atualizações.
+
+Por isso, recomendamos que em uso real, ou quando encontrarmos problemas em uso de teste, sempre seja espcificado a versão da imagem. 
 
 ## Rodando Containers
 
