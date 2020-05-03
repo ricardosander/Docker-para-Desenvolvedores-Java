@@ -100,11 +100,11 @@ Quando rodamos um container, ele executará um comando padrão. Algumas imagens,
 
 Uma opção que podemos utilizar nesse caso é ativar o modo interativo (-i) e conectar nosso terminal ao bash do container (-t):
 ```
-docker run -i -t ubuntu
+docker container run -i -t ubuntu
 ```
 ou 
 ```
-docker run -it ubuntu
+docker container run -it ubuntu
 ```
 
 Dessa forma, ao rodar o container, seremos conectados ao bash do container e o container ficará rodando até sairmos do bash com o comando ```exit```.
