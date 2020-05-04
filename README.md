@@ -210,4 +210,16 @@ O Docker Hub possui diversas imagens públicas para uso mas é importante termos
 
 Existem também o conceito de "imagens oficiais" as quais são facilmente identificadas por terem uma tag "official" e não terem owner-name, como o exemplo da [imagem oficial do Ubuntu](https://hub.docker.com/_/ubuntu). Essas imagens oficias são criadas e mantidas por profissionais da equipe do Docker para uso da comunidade e são confiáveis.
 
-### Test
+### Criando Imagens a partir de um Container
+
+Um dos métodos de criar uma nova imagem, é utilizar um Container. Esse não é a melhor forma e nem a mais usada, mas é uma forma importante de conhecer, principalmente pela simplicidade e pelos conceitos.
+
+Digamos que queiramos criar uma imagem com Ubuntu e o ambiente de desenvolvimento Java e que essa imagem ainda não exista. Podemos baixar uma imagem do Ubuntu, rodar um container dessa imagem, fazer a instalação Java no container e criar uma nova imagem contendo a imagem do Ubuntu + as alterações que realizamos no container. Algo bem interessante é que criaremos um tipo de layer somente com as alterações e essa imagem usará a imagem original do Ubuntu, o que economizará espaço e banda, já que essa imagem do Ubuntu é partilhada com outras imagens.
+
+Após realizar as alterações em um container, basta rodar o seguinte comando para criar uma imagem a partir dele:
+
+```
+docker container commit -a "Nome Completo do Autor email@do.autor" container-id-ou-nome nome-da-nova-imagem
+```
+
+Após rodar esse comando, uma imagem será criada a poderemos criar e rodar novos containers com base nessa imagem.
