@@ -209,3 +209,5 @@ Desse modo teríamos uma imagem Ubuntu-Java11 que poderia ser utilizada na cria�
 O Docker Hub possui diversas imagens públicas para uso mas é importante termos cuidado para utilizar imagens confiáveis que não contenham algum tipo de (Malware)[https://pt.wikipedia.org/wiki/Malware]. Uma imagem Docker do Docker Hub é composta de owner-name e image-name no seguinte formato: owner-name/image-name de forma que é simples identificar quem é o dono da imagem para identificar repositórios confiáveis. 
 
 Existem também o conceito de "imagens oficiais" as quais são facilmente identificadas por terem uma tag "official" e não terem owner-name, como o exemplo da [imagem oficial do Ubuntu](https://hub.docker.com/_/ubuntu). Essas imagens oficias são criadas e mantidas por profissionais da equipe do Docker para uso da comunidade e são confiáveis.
+
+### Test
