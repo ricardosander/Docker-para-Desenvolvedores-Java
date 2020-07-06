@@ -39,7 +39,7 @@ Para baixar imagens basta rodar o seguinte comando:
 docker image pull owner-username/image-name
 ```
 
-Para listar todas as imagens que temos baixadas locamente podemos usar o seguinte comando:
+Para listar todas as imagens que temos baixadas localmente podemos usar o seguinte comando:
 ```
 docker image ls
 ```
@@ -52,9 +52,9 @@ Na verdade, a referência completa para uma imagem é feita por três partes, n�
 owner-name/image-name:version
 ```
 
-Ou seja, nome-proprietario/nome-imagem:versão. Quando não especificamos a versão, o Docker sempre irá considerar que estamos nos referindo a última versão (latest). Embora tenhamos usado esse recurso nos exemplos do curso, não recomenda-se que isso seja feito pois pode levar a problemas de compatibilidade e instabilidade sem ao menos estarmos ciente das atualizações.
+Ou seja, nome-proprietario/nome-imagem:versão. Quando não especificamos a versão, o Docker sempre irá considerar que estamos nos referindo a última versão (latest). Embora tenhamos usado esse recurso nos exemplos desse texto, não recomenda-se que isso seja feito pois pode levar a problemas de compatibilidade e instabilidade sem ao menos estarmos ciente das atualizações.
 
-Por isso, recomendamos que em uso real, ou quando encontrarmos problemas em uso de teste, sempre seja espcificado a versão da imagem. 
+Por isso, recomendo que em uso real, ou quando encontrarmos problemas em uso de teste, sempre seja especificado a versão da imagem. 
 
 ## Rodando Containers
 
@@ -96,7 +96,7 @@ docker container ls
 ```
 ou
 ```
-docker container ls -a # o parâmetro "a"significa all (todos), ou seja, listar todas os containers, até os que não estão rodando.
+docker container ls -a # o parâmetro "a" significa all (todos), ou seja, listar todas os containers, até os que não estão rodando.
 ```
 Ao listar o contrainer você perceberá que ele posui um id (CONTAINER_ID) e um nome (NAMES), que foram gerados quando ele foi criado.
 
@@ -128,7 +128,7 @@ Já vimos como rodar um container e como pará-lo. Porém, ao parar um container
 docker container start id-or-name
 ```
 
-Em alguns casos podemos querer reiniciar um container que está rodando, ou seja, pará-lo e inicialo novamente. Para isso, usamos o seguinte comando:
+Em alguns casos podemos querer reiniciar um container que está rodando, ou seja, pará-lo e iniciá-lo novamente. Para isso, usamos o seguinte comando:
 
 ```
 docker container restart id-or-name
@@ -188,7 +188,7 @@ docker ps | docker container ls - listando containers
 docker images | docker image ls - listando imagens baixadas
 ```
 
-## Docker Hub
+## Repositório Docker e Docker Hub
 
 O [Docker Hub](https://hub.docker.com/) é um respositório público de imagens para Docker. Ele é o repositório padrão mas pode-se criar repositórios privados e usá-los também.
 
@@ -240,7 +240,7 @@ RUN apt-get update && apt-get install -y openjdk-11-jdk
 CMD ["/bin/bash"]
 ```
 
-A primeira linha indica qual a Imagem base que usamos, que no caso seria a do ubuntu, última versão. A segunda linha é apenas uma informação para identificarmos quem é o criador e mantenador da imagem. A terceira linha apresenta quais os comandos são executados durante a criação da Imagem. A quarta e última linha define o comando que será executado ao rodarmos essa Imagem.
+A primeira linha indica qual a Imagem base que usamos, que no caso seria a do Ubuntu, última versão. A segunda linha é apenas uma informação para identificarmos quem é o criador e mantenador da imagem. A terceira linha apresenta quais os comandos são executados durante a criação da Imagem. A quarta e última linha define o comando que será executado ao rodarmos essa Imagem.
 
 Após criarmos o Dockerfile, rodamos o seguinte comando para construirmos a Imagem:
 
@@ -250,4 +250,4 @@ docker imagem build -t nome-que-queremos-dar-a-imagem .
 
 Onde o argumento ```-t``` indica o nome que queremos dar a Imagem e o argumento ```.```é o diretório onde está nosso Dockerfile. No caso o uso de ```.``` indica o diretório atual.
 
-Analisando os logs da criação da Imagem, podemos ver que cada linha se torna uma passo da criação, e que diversos layers vão sendo criados durante a construção da Imagem. Esses layers são camadas da Imagem, assim como a Imagem ubuntu é uma das camadas. Ao modificamos o Dockerfile e rodar novamente o comando de construção podemos ver que os passos que não houveram alteração não são executados pois a camada criada anterioemente pode ser reutilizada.
+Analisando os logs da criação da Imagem, podemos ver que cada linha se torna uma passo da criação, e que diversos layers vão sendo criados durante a construção da Imagem. Esses layers são camadas da Imagem, assim como a Imagem Ubuntu é uma das camadas. Ao modificamos o Dockerfile e rodar novamente o comando de construção podemos ver que os passos que não houveram alteração não são executados pois a camada criada anterioemente pode ser reutilizada.
