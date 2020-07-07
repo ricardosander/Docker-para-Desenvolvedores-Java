@@ -22,7 +22,7 @@ Digamos que queiramos criar uma imagem com Ubuntu e o ambiente de desenvolviment
 
 Após realizar as alterações em um container, basta rodar o seguinte comando para criar uma imagem a partir dele:
 
-```
+```bash
 docker container commit -a "Nome Completo do Autor email@do.autor" container-id-ou-nome nome-da-nova-imagem
 ```
 
@@ -34,7 +34,7 @@ A criação de Imagem a partir de um Dockerfile é vantajosa pois ela é repetí
 
 Um Dockerfile é um arquivo de texto de mesmo nome que deve ser colocado em um diretório próprio. Um exemplo de Dockerfile é o seguinte:
 
-```
+```Dockerfile
 FROM ubuntu:latest
 
 MAINTAINER Ricardo Sander "ricardo.sander.lopes@gmail.com"
@@ -48,11 +48,11 @@ A primeira linha indica qual a Imagem base que usamos, que no caso seria a do Ub
 
 Após criarmos o Dockerfile, rodamos o seguinte comando para construirmos a Imagem:
 
-```
+```bash
 docker imagem build -t nome-que-queremos-dar-a-imagem .
 ```
 
-Onde o argumento ```-t``` indica o nome que queremos dar a Imagem e o argumento ```.```é o diretório onde está nosso Dockerfile. No caso o uso de ```.``` indica o diretório atual.
+Onde o argumento ```-t``` indica o nome que queremos dar a Imagem e o argumento ```.``` é o diretório onde está nosso Dockerfile. No caso o uso de ```.``` indica o diretório atual.
 
 Analisando os logs da criação da Imagem, podemos ver que cada linha se torna uma passo da criação, e que diversos layers vão sendo criados durante a construção da Imagem. Esses layers são camadas da Imagem, assim como a Imagem Ubuntu é uma das camadas. Ao modificamos o Dockerfile e rodar novamente o comando de construção podemos ver que os passos que não houveram alteração não são executados pois a camada criada anterioemente pode ser reutilizada.
 

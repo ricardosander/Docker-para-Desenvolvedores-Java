@@ -6,12 +6,12 @@
 Como dito anteriormente, uma imagem é a definição de um container. Para criar um container e pode executá-lo, precisamos de uma imagem para isso.
 
 Para baixar imagens basta rodar o seguinte comando:
-```
+```bash
 docker image pull owner-username/image-name
 ```
 
 Para listar todas as imagens que temos baixadas localmente podemos usar o seguinte comando:
-```
+```bash
 docker image ls
 ```
 
