@@ -1,3 +1,5 @@
+[< Repositório Docker e Docker Hub](7-DockerHub.md) | [Início](README.md)
+
 # Criando Imagens
 
 ## Conceitos Básicos
@@ -53,3 +55,5 @@ docker imagem build -t nome-que-queremos-dar-a-imagem .
 Onde o argumento ```-t``` indica o nome que queremos dar a Imagem e o argumento ```.```é o diretório onde está nosso Dockerfile. No caso o uso de ```.``` indica o diretório atual.
 
 Analisando os logs da criação da Imagem, podemos ver que cada linha se torna uma passo da criação, e que diversos layers vão sendo criados durante a construção da Imagem. Esses layers são camadas da Imagem, assim como a Imagem Ubuntu é uma das camadas. Ao modificamos o Dockerfile e rodar novamente o comando de construção podemos ver que os passos que não houveram alteração não são executados pois a camada criada anterioemente pode ser reutilizada.
+
+[< Repositório Docker e Docker Hub](7-DockerHub.md) | [Início](README.md)
