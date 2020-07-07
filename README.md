@@ -1,10 +1,6 @@
 # Curso de Docker para Desenvolvedores Java
 Repositório utilizado para aprendizado do curso Docker - Hands On for Java Developers
 
-[Teste 1.1](teste.md)
-[Teste 2.1](teste.html)
-[Teste 3.2](teste)
-
 ## Definições Iniciais
 
 ### Imagem
