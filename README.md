@@ -1,7 +1,14 @@
 # Curso de Docker para Desenvolvedores Java
 Repositório utilizado para aprendizado do curso Docker - Hands On for Java Developers
 
-* [Definições Iniciais](1-DefinicoesIniciais.md)
+1. [Definições Iniciais](1-DefinicoesIniciais.md)
+1. [Instalando o Docker](2-InstalandoDocker.md)
+1. [Hello Docker](2-HelloDocker.md)
+1. [Imagens](3-Imagens.md)
+1. [Containers](4-Containers.md)
+1. [Comandos Docker : Clássico vs Modernos](5-ComandosDocker.md)
+1. [Repositório Docker e Docker Hub](6-DockerHub.md)
+1. [Criando Imagens](7-CriandoImagens.md)
 
 ## Definições Iniciais
 
