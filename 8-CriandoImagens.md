@@ -49,11 +49,127 @@ A primeira linha indica qual a Imagem base que usamos, que no caso seria a do Ub
 Após criarmos o Dockerfile, rodamos o seguinte comando para construirmos a Imagem:
 
 ```bash
-docker imagem build -t nome-que-queremos-dar-a-imagem .
+docker image build -t nome-que-queremos-dar-a-imagem .
 ```
 
 Onde o argumento ```-t``` indica o nome que queremos dar a Imagem e o argumento ```.``` é o diretório onde está nosso Dockerfile. No caso o uso de ```.``` indica o diretório atual.
 
 Analisando os logs da criação da Imagem, podemos ver que cada linha se torna uma passo da criação, e que diversos layers vão sendo criados durante a construção da Imagem. Esses layers são camadas da Imagem, assim como a Imagem Ubuntu é uma das camadas. Ao modificamos o Dockerfile e rodar novamente o comando de construção podemos ver que os passos que não houveram alteração não são executados pois a camada criada anterioemente pode ser reutilizada.
+
+### Comando MAINTAINER Descontinuiado
+
+Atualmente o comando ```MAINTAINER``` consta na documentação do Docker como descontinuado. Isso significa que o comando pode deixar de existir a qualquer momento e que não é recomendado a criação de novas Imagens com ele.
+
+Mesmo assim, esse comando é amplamente utilizado em Imagens que já existem e é importante ao menos conhecê-lo para saber do que se trata.
+
+Existe uma alternativa para esse comando que é o uso de "labels" que será mencionado posteriomente.
+
+## Copiando arquivos para a Imagem
+
+Já aprendemos como criar uma Imagem básica, rodando comandos para alterá-la, e definindo o comando executado ao rodar essa Imagem, ao criar o Container. Porém, para podermos criar imagens com nossas próprias aplicações, precisaremos conseguir transferir nossa aplicação para dentro da Imagem.
+
+Podemos fazer isso utilizando o comando ```COPY```, conforme a 4ª linha do exemplo a seguir:
+
+```Dockerfile
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+
+COPY my-service.jar /usr/local/bin
+
+CMD ["/bin/bash"]
+```
+
+Esse comando copia um arquivo local (primeiro argumento) para um diretório dentro da Imagem (segundo argumento). No exemplo a cima, estamos copiando um arquivo jar para o diretório /usr/local/bin/ da Imagem.
+
+É importante salientar que somente arquivos no diretório do Dockerfile e em seus subdiretórios serão visíveis para execução do comando ```COPY```. Lembra quando definimos o diretório (com o argumento ".") onde o Dockerfile estava localizado para criar a Imagem? Esse diretório é considerado o escopo da criação da Imagem e nenhum diretório fora dele será visível durante a criação da Imagem.
+
+### Diretório de Trabalho da Imagem
+
+Antes de recriarmos nossa Imagem, ainda podemos aprimorar um pouco mais nosso Dockerfile. Podemos definir qual o "diretório de trabalho" da Imagem. Isso define onde será o ponto de entrada da Imagem e facilitará outros comandos, como o ```COPY``` pois não precisaremos definir todo o caminho. O comando para definir esse diretório é o ```WORKDIR``` e, caso não seja definido, será a raiz da imagem (o /).
+
+```Dockerfile
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+
+WORKDIR /usr/local/bin
+
+COPY my-service.jar .
+
+CMD ["/bin/bash"]
+```
+
+Além de simplificarmos o comando de copiar o arquivo, outros comandos serão simplificados graças a esse comando e, quando acessarmos o Container, estaremos no diretório definido.
+
+Agora basta rodarmos o comando para construir nossa Imagem e rodarmos ela em um Container:
+
+```bash
+docker image build -t docker-for-java .
+docker container run -it docker-for-java
+```
+
+Após rodarmos ambos os comandos, teremos uma nova Imagem, com o arquivo java dentro dela e estaremos com noo terminal conectado ao Container, no diretório de trabalho especificado.
+
+### ADD como alternatica ao COPY
+
+Na documentação do Docker há uma alternativa ao comando ```COPY``` que é o ```ADD```. A documentação dos dois comandos é bem similar e ```ADD``` parece fazer tudo que o ```COPY``` com alguns detalhes extras como possibilidar adicionar uma URL como origem e descompactar arquivos compactados.
+
+A convenção é usarmos o ```COPY``` para o básico e deixarmos o ```ADD``` para os casos específicos e avançados.
+
+## Comando para Execução do Container
+
+Falamos brevemente sobre o que o comando ```CMD``` faz mas, até o momento, ele não nos foi verdadeiramente útil. Esse comando define qual vai ser o comando executado pelo Container na hora que este for executado. Para nosso Container faz todo sentido que o Container execute o arquivo jar que colocamos lá dentro. Dessa forma, nosso Dockerfile fica assim:
+
+```Dockerfile
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+
+WORKDIR /usr/local/bin
+
+COPY my-service.jar .
+
+CMD ["java", "-jar", "my-service.jar"]
+```
+
+Existem 3 maneiras de escrever esse comando, a forma demonstrada é chamada "exec form" e é considerada a preferível na documentação do Docker. A "exec form" é um array de strings (com aspas duplas) onde o primeiro elemento é o executável/comando e os demais são os parâmetros.
+
+Após cronstruir a Imagem e criarmos um Container (no modo detach):
+
+```bash
+docker image build -t docker-for-java .
+docker container run -d docker-for-java
+```
+
+Teremos um container rodando, em "background" e executando a aplicação Java. Podemos usar os comandos aprendidos anteriormente para listar Containers, parar, iniciar e ver os logs.
+
+
+### ENTRYPOINT como alternativa ao CMD
+
+Existe um comando muito semelhante ao ```CMD``` que é o ```ENTRYPOINT```. A diferença entre eles é que o que definimos no ```CMD``` é o comando inicial padrão para o Container, enquanto o definido no ```ENTRYPOINT``` é o comando obrigatório. Ou seja, ao criarmos um Container de uma Imagem com ```CMD```, podemos adicionar o comando que queremos que seja rodado enquanto ao criarmos um Container de uma Imagem com ```ENTRYPOINT``` qualquer comando adicionado a criação do Container será ignorado e substituído pelo comando definido no ```ENTRYPOINT```.
+
+## Labels e Meta Dados
+
+Conforme mencionado na seção sobre descontinuamento do comando ```CONTAINER```, a construção de Imagens nos permite criar labels para adicionar meta dados sobre a nossa imagem. O comando recebe uma chave e um valor e pode ser utilizado para adicionar qualquer tipo de informação sobre a Imagem, como mantenedor, versão, data de criação, etc.
+
+Uma dica interessante é que podemos adicionar o comando ao final do Dockerfile e isso nos ajuda a, caso precisemos alterar essas labels, a construção da Imagem reaproveite todas as etapas anteriores da construção e refaça somente a parte referente as labels. Se usarmos esse comando no meio do arquivo e precisarmos mudar, tudo que foi definido posteriormente precisará ser reconstruído.
+
+Exemplo de uso do comando label, definindo mantenedor e versão:
+
+```Dockerfile
+FROM ubuntu:latest
+
+RUN apt-get update && apt-get install -y openjdk-11-jdk
+
+WORKDIR /usr/local/bin
+
+COPY my-service.jar .
+
+CMD ["java", "-jar", "my-service.jar"]
+
+LABEL maintainer="Ricardo Sander - ricardo.sander.lopes@gmail.com"
+LABEL version=v0
+```
 
 [< Repositório Docker e Docker Hub](7-DockerHub.md) | [Início](README.md)
