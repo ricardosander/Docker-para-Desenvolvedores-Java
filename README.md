@@ -1,5 +1,5 @@
 # Curso de Docker para Desenvolvedores Java
-Repositório utilizado para aprendizado do curso Docker - Hands On for Java Developers
+Repositório utilizado para aprendizado no curso Docker - Hands On for Java Developers
 
 ## Sumário
 
