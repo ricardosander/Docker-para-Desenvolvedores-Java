@@ -4,7 +4,7 @@
 
 Durante a evolução do Docker, decidiu-se migrar dos chamados "comandos clássicos" para os "comandos modernos". Isso foi uma reistruturação pois o Docker estava crescendo tanto que a quantidade de comandos estava começando a gerar confusão e desorganização.
 
-O grande diferencial é que os comandos modernos seguem o padrão "docker recurso comando -parametros", ou seja, o comando será sempre precedido do recurso para o qual estamos rodando o comando. Exemplos de recursos são container e imagem.
+O grande diferencial é que os comandos modernos seguem o padrão "docker recurso comando -parametros argumento", ou seja, o comando será sempre precedido do recurso para o qual estamos rodando o comando. Exemplos de recursos são Container e Imagem.
 
 Embora os comandos clássicos ainda funcionem normalmente, pode ser que eles venham a ser removidos com o tempo então recomenda-se a adotação dos comandos modernos.
 
