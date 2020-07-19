@@ -180,4 +180,52 @@ LABEL maintainer="Ricardo Sander - ricardo.sander.lopes@gmail.com"
 LABEL version=v0
 ```
 
+## O Comando EXPOSE
+
+Existe um comando muito utilizado em Dockerfiles que é o comando ```EXPOSE```. Embora muitos acreditem que este comando sirva para expor ou publicar as portas do Container criado com a Imagem, na verdade, esse comando serve apenas como uma boa prática de engenharia para documentar para quem venha a utilizar aquela Imagem que a portas mencionadas no ```EXPOSE``` estarão sendo usadas pelo Container. Para que a porta seja acessível, é necessário publicar a porta conforme mostrado na seção ```Expondo Portas no capítulo 5```.
+
+Exemplo de uso do ```EXPOSE```
+
+```Dockerfile
+FROM ubuntu:latest
+
+EXPOSE 8080
+
+CMD ["/bin/bash"]
+```
+
+## Variáveis de Ambiente com ENV
+
+Variáveis de ambiente são conjuntos chave-valor utilizados para passar valores para o Container usar em tempo de execução. Definimos uma variável de ambiente utilizando o comando ```ENV``` seguido da chave e valor. Tudo que vier após o espaço após a chave é considerado parte do valor mas caracteres especiais, como aspas, precisam ser escapados.
+
+```Dockerfile
+ENV minhaVariavel Valor da Minha Variável
+```
+
+Outra forma de usar esse comando é o seguinte:
+
+```Dockerfile
+ENV minhaVariavel="Valor da Minha Variável"
+```
+
+Exemplo de uso em um Dockerfile:
+
+```Dockerfile
+FROM ubuntu:latest
+
+ENV JAVA_OPTS="-Dspring.profiles.active=docker-demo"
+
+CMD ["/bin/bash"]
+```
+
+No exemplo acima é definido uma variável de ambiente chamada JAVA_OPTS. O valor dessa variável é tudo que está entre as aspas.
+
+Uma variável de ambiente pode ser definida ao criarmos o Container da Imagem, e esse valor será persistido no Container.
+
+```bash
+docker container run --env myDatabasePassword=pass123 my-database-image
+```
+
+Toda vez que o Container criado no comando de exemplo a cima for iniciado o reiniciado, o valor da variável de ambiente será o mesmo que o definino quando este foi criado. Esse recurso é muito importante para a definição de variáveis customizáveis e sensíveis, como senhas, por exemplo.
+
 [< Repositório Docker e Docker Hub](7-DockerHub.md) | [Início](README.md)
