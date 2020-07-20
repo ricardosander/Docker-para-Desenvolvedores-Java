@@ -11,6 +11,7 @@ Repositório utilizado para aprendizado no curso Docker - Hands On for Java Deve
 1. [Comandos Docker : Clássico vs Modernos](6-ComandosDocker.md)
 1. [Repositório Docker e Docker Hub](7-DockerHub.md)
 1. [Criando Imagens](8-CriandoImagens.md)
+1. [Criando uma Aplicação Tomcat](9-AplicacaoTomcat.md)
 
 ## Referências
 
