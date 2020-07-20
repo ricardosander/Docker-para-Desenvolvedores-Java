@@ -76,6 +76,16 @@ docker container run -it ubuntu
 
 Dessa forma, ao rodar o Container, seremos conectados ao bash do Container e o Container ficará rodando até sairmos do bash com o comando ```exit```.
 
+#### Removendo Container Automaticamente
+
+Existe uma opção muito útil para quando estamos testando e desenvolvendo Imagens e Containers que é o ```--rm```. Essa opção faz que com que, ao finalizar o comando do Container, o Container seja automaticamente removido. Ou seja, se executarmos o seguinte comando:
+
+```bash
+docker run -it --rm ubuntu
+```
+
+Iremos criar um Container do Ubuntu, executá-lo no modo iterativo e conectar o terminal do Container ao nosso terminal. Porém, ao utilizar o comando ```exit``` para sair do terminal do Container, o Container não será apenas parado, ele será removido.
+
 ### Iniciando e Reiniciando Containers
 
 Já vimos como rodar um Container e como pará-lo. Porém, ao parar um Container ele não é destruído, ele apenas fica em um estado de desligado. Podemos rodar novamente o Container com o seguinte comando:
